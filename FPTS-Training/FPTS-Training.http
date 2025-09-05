@@ -1,0 +1,6 @@
+@FPTS_Training_HostAddress = http://localhost:5123
+
+GET {{FPTS_Training_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
