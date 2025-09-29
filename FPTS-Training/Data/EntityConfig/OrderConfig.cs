@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FPTS_Training.Data.EntityConfig;
 
-public class OrderConfig : IEntityTypeConfiguration<Orders>
+public class OrderConfig : BaseEntityConfiguration<Orders>
 {
     public const string ToTable = "ORDERS";
     public const string BuyerIdColumnName = "BUYER_ID";
@@ -17,8 +17,9 @@ public class OrderConfig : IEntityTypeConfiguration<Orders>
         {AddressIdColumnName, "VARCHAR2(20 BYTE)" },
         {StatusColumnName, "NUMBER(1,0)" },
     };
-    public void Configure(EntityTypeBuilder<Orders> builder)
+    public override void Configure(EntityTypeBuilder<Orders> builder)
     {
+        base.Configure(builder);
         builder.ToTable(ToTable);
         builder.Property(p => p.BuyerId)
             .HasColumnType(DataTypes[BuyerIdColumnName])

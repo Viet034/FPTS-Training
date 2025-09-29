@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FPTS_Training.Data.EntityConfig;
 
-public class ProductConfig : IEntityTypeConfiguration<Products>
+public class ProductConfig : BaseEntityConfiguration<Products>
 {
     public const string ToTable = "PRODUCTS";
     public const string StatusColumnName = "STATUS";
@@ -13,8 +13,10 @@ public class ProductConfig : IEntityTypeConfiguration<Products>
     {
         {StatusColumnName, "NUMBER(1,0)" }
     };
-    public void Configure(EntityTypeBuilder<Products> builder)
+    public override void Configure(EntityTypeBuilder<Products> builder)
     {
+        base.Configure(builder);
+        builder.ToTable(ToTable);
         builder.Property(p => p.Status)
             .HasConversion<int>()
             .HasColumnType(DataTypes[StatusColumnName])

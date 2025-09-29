@@ -3,6 +3,7 @@ using System;
 using FPTS_Training.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 
@@ -11,9 +12,11 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace FPTS_Training.Migrations
 {
     [DbContext(typeof(FPTSTrainingDBContext))]
-    partial class FPTSTrainingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250918083731_RetryUpdate")]
+    partial class RetryUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +29,10 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Buyers", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("VARCHAR2(100 BYTE)")
-                        .HasColumnName("ID");
+                        .HasColumnName("ID")
+                        .HasDefaultValueSql("product_insert_seq.NEXTVAL");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -62,10 +67,11 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("PAYMENT_METHOD");
 
                     b.Property<string>("UpdateBy")
+                        .IsRequired()
                         .HasColumnType("VARCHAR2(20 BYTE)")
                         .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TIMESTAMP(6)")
                         .HasColumnName("UPDATE_DATE");
 
@@ -77,8 +83,10 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.OrderItems", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("VARCHAR2(100 BYTE)")
-                        .HasColumnName("ID");
+                        .HasColumnName("ID")
+                        .HasDefaultValueSql("product_insert_seq.NEXTVAL");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -127,10 +135,11 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("UNITS");
 
                     b.Property<string>("UpdateBy")
+                        .IsRequired()
                         .HasColumnType("VARCHAR2(20 BYTE)")
                         .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TIMESTAMP(6)")
                         .HasColumnName("UPDATE_DATE");
 
@@ -142,8 +151,10 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Orders", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("VARCHAR2(100 BYTE)")
-                        .HasColumnName("ID");
+                        .HasColumnName("ID")
+                        .HasDefaultValueSql("product_insert_seq.NEXTVAL");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -187,10 +198,11 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("STATUS");
 
                     b.Property<string>("UpdateBy")
+                        .IsRequired()
                         .HasColumnType("VARCHAR2(20 BYTE)")
                         .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TIMESTAMP(6)")
                         .HasColumnName("UPDATE_DATE");
 
@@ -202,8 +214,10 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Products", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("VARCHAR2(100 BYTE)")
-                        .HasColumnName("ID");
+                        .HasColumnName("ID")
+                        .HasDefaultValueSql("product_insert_seq.NEXTVAL");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -237,10 +251,11 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("STATUS");
 
                     b.Property<string>("UpdateBy")
+                        .IsRequired()
                         .HasColumnType("VARCHAR2(20 BYTE)")
                         .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TIMESTAMP(6)")
                         .HasColumnName("UPDATE_DATE");
 

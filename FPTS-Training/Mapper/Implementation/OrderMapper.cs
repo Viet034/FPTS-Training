@@ -34,15 +34,29 @@ public class OrderMapper : IOrderMapper
 
     public OrderResponseDTO EntityToResponse(Orders entity)
     {
-        OrderResponseDTO response = new OrderResponseDTO();
-        response.Id = entity.Id;
-        response.Code = entity.Code;
-        response.Name = entity.Name;
-        response.BuyerId = entity.BuyerId;
-        response.Address = entity.Address;
-        response.Status = entity.Status;
-        response.CreateDate = entity.CreateDate;
-        return response;
+        //OrderResponseDTO response = new OrderResponseDTO();
+        //response.Id = entity.Id;
+        //response.Code = entity.Code;
+        //response.Name = entity.Name;
+        //response.BuyerId = entity.BuyerId;
+        //response.Address = entity.Address;
+        //response.Status = entity.Status;
+        //response.CreateDate = entity.CreateDate;
+        //return response;
+        if (entity == null)
+        {
+            throw new Exception("Null");
+        }
+        return new OrderResponseDTO
+        {
+            Id = entity.Id,
+            Code = entity.Code,
+            Name = entity.Name,
+            BuyerId = entity.BuyerId,
+            Address = entity.Address,
+            Status = entity.Status,
+            CreateDate = entity.CreateDate
+        }; 
     }
 
     public IEnumerable<OrderResponseDTO> ListEntityToResponse(IEnumerable<Orders> entities)
@@ -54,9 +68,9 @@ public class OrderMapper : IOrderMapper
     {
         Orders order = new Orders();
         order.Id = update.Id;
-        order.Code = update.Code;
+        
         order.Name = update.Name;
-        order.BuyerId = update.BuyerId;
+   
         order.Address = update.Address;
         order.Status = update.Status;
         return order;
