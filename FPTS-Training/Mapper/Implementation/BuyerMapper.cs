@@ -30,13 +30,26 @@ public class BuyerMapper : IBuyerMapper
 
     public BuyerResponseDTO EntityToResponse(Buyers entity)
     {
-        BuyerResponseDTO response = new BuyerResponseDTO();
-        response.Id = entity.Id;
-        response.Code = entity.Id;
-        response.Name = entity.Id;
-        response.PaymentMethod = entity.Id;
-        response.CreateDate = entity.CreateDate;
-        return response;
+        //BuyerResponseDTO response = new BuyerResponseDTO();
+        //response.Id = entity.Id;
+        //response.Code = entity.Id;
+        //response.Name = entity.Id;
+        //response.PaymentMethod = entity.Id;
+        //response.CreateDate = entity.CreateDate;
+        //return response;
+        if (entity == null)
+        {
+            throw new Exception("Null");
+        }
+
+        return new BuyerResponseDTO
+        {
+            Id = entity.Id,
+            Code = entity.Code,
+            Name = entity.Name,
+            PaymentMethod = entity.PaymentMethod,
+            CreateDate = entity.CreateDate
+        };
     }
 
     public IEnumerable<BuyerResponseDTO> ListEntityToResponse(IEnumerable<Buyers> entities)
@@ -48,7 +61,7 @@ public class BuyerMapper : IBuyerMapper
     {
         Buyers buyer = new Buyers();
         buyer.Id = update.Id;
-        buyer.Code = update.Code;
+        
         buyer.Name = update.Name;
         buyer.PaymentMethod = update.PaymentMethod;
         buyer.UpdateDate = DateTime.UtcNow.AddHours(7);

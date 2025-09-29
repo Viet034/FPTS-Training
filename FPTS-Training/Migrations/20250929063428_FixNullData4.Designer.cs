@@ -3,6 +3,7 @@ using System;
 using FPTS_Training.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 
@@ -11,9 +12,11 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace FPTS_Training.Migrations
 {
     [DbContext(typeof(FPTSTrainingDBContext))]
-    partial class FPTSTrainingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250929063428_FixNullData4")]
+    partial class FixNullData4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

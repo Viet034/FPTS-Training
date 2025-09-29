@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FPTS_Training.Data.EntityConfig;
 
-public class OrderItemConfig : IEntityTypeConfiguration<OrderItems>
+public class OrderItemConfig : BaseEntityConfiguration<OrderItems>
 {
     public const string ToTable = "ORDER_ITEMS";
     public const string UnitColumnName = "UNITS";
@@ -20,8 +20,9 @@ public class OrderItemConfig : IEntityTypeConfiguration<OrderItems>
         {ProductIdColumnName, "VARCHAR2(5 BYTE)" },
         {OrderIdColumnName, "VARCHAR2(5 BYTE)" },
     };
-    public void Configure(EntityTypeBuilder<OrderItems> builder)
+    public override void Configure(EntityTypeBuilder<OrderItems> builder)
     {
+        base.Configure(builder);
         builder.ToTable(ToTable);
         builder.Property(p => p.Units)
             .HasColumnType(DataTypes[UnitColumnName])

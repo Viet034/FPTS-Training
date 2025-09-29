@@ -59,12 +59,12 @@ public class OrderItemMapper : IOrderItemMapper
     {
         OrderItems item = new OrderItems();
         item.Id = update.Id;
-        item.Code = update.Code;
+        
         item.Name = update.Name;
         item.Units = update.Units;
         item.UnitPrice = update.UnitPrice;
         item.ProductId = update.ProductId;
-        item.OrderId = update.OrderId;
+        
         item.UpdateDate = DateTime.UtcNow.AddHours(7);
         item.UpdateBy = update.Name;
         return item;

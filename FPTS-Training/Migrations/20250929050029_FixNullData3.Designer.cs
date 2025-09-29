@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace FPTS_Training.Migrations
 {
     [DbContext(typeof(FPTSTrainingDBContext))]
-    [Migration("20250905035749_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250929050029_FixNullData3")]
+    partial class FixNullData3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,28 +29,35 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Buyers", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("NVARCHAR2(450)");
+                        .HasColumnType("VARCHAR2(100 BYTE)")
+                        .HasColumnName("ID");
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(5 BYTE)")
+                        .HasColumnName("CODE");
 
                     b.Property<string>("CreateBy")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("CREATE_BY");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("CREATE_DATE");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("NAME");
 
                     b.Property<long>("Offsets")
-                        .HasColumnType("NUMBER(19)");
+                        .HasColumnType("NUMBER(19,0)")
+                        .HasColumnName("OFFSETS");
 
-                    b.Property<int>("Partitions")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<short>("Partitions")
+                        .HasColumnType("NUMBER(5,0)")
+                        .HasColumnName("PARTITIONS");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -58,11 +65,12 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("PAYMENT_METHOD");
 
                     b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("UPDATE_DATE");
 
                     b.HasKey("Id");
 
@@ -72,33 +80,40 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.OrderItems", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("NVARCHAR2(450)");
+                        .HasColumnType("VARCHAR2(100 BYTE)")
+                        .HasColumnName("ID");
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(5 BYTE)")
+                        .HasColumnName("CODE");
 
                     b.Property<string>("CreateBy")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("CREATE_BY");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("CREATE_DATE");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("NAME");
 
                     b.Property<long>("Offsets")
-                        .HasColumnType("NUMBER(19)");
+                        .HasColumnType("NUMBER(19,0)")
+                        .HasColumnName("OFFSETS");
 
                     b.Property<string>("OrderId")
                         .IsRequired()
                         .HasColumnType("VARCHAR2(5 BYTE)")
                         .HasColumnName("ORDER_ID");
 
-                    b.Property<int>("Partitions")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<short>("Partitions")
+                        .HasColumnType("NUMBER(5,0)")
+                        .HasColumnName("PARTITIONS");
 
                     b.Property<string>("ProductId")
                         .IsRequired()
@@ -115,11 +130,12 @@ namespace FPTS_Training.Migrations
                         .HasColumnName("UNITS");
 
                     b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("UPDATE_DATE");
 
                     b.HasKey("Id");
 
@@ -129,7 +145,8 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Orders", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("NVARCHAR2(450)");
+                        .HasColumnType("VARCHAR2(100 BYTE)")
+                        .HasColumnName("ID");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -143,35 +160,42 @@ namespace FPTS_Training.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(5 BYTE)")
+                        .HasColumnName("CODE");
 
                     b.Property<string>("CreateBy")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("CREATE_BY");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("CREATE_DATE");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("NAME");
 
                     b.Property<long>("Offsets")
-                        .HasColumnType("NUMBER(19)");
+                        .HasColumnType("NUMBER(19,0)")
+                        .HasColumnName("OFFSETS");
 
-                    b.Property<int>("Partitions")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<short>("Partitions")
+                        .HasColumnType("NUMBER(5,0)")
+                        .HasColumnName("PARTITIONS");
 
                     b.Property<int>("Status")
                         .HasColumnType("NUMBER(1,0)")
                         .HasColumnName("STATUS");
 
                     b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("UPDATE_DATE");
 
                     b.HasKey("Id");
 
@@ -181,43 +205,51 @@ namespace FPTS_Training.Migrations
             modelBuilder.Entity("FPTS_Training.Models.Products", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("NVARCHAR2(450)");
+                        .HasColumnType("VARCHAR2(100 BYTE)")
+                        .HasColumnName("ID");
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(5 BYTE)")
+                        .HasColumnName("CODE");
 
                     b.Property<string>("CreateBy")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("CREATE_BY");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("CREATE_DATE");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("NAME");
 
                     b.Property<long>("Offsets")
-                        .HasColumnType("NUMBER(19)");
+                        .HasColumnType("NUMBER(19,0)")
+                        .HasColumnName("OFFSETS");
 
-                    b.Property<int>("Partitions")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<short>("Partitions")
+                        .HasColumnType("NUMBER(5,0)")
+                        .HasColumnName("PARTITIONS");
 
                     b.Property<int>("Status")
                         .HasColumnType("NUMBER(1,0)")
                         .HasColumnName("STATUS");
 
                     b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("VARCHAR2(20 BYTE)")
+                        .HasColumnName("UPDATE_BY");
 
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("TIMESTAMP(7)");
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("TIMESTAMP(6)")
+                        .HasColumnName("UPDATE_DATE");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", "HANVV");
+                    b.ToTable("PRODUCTS", "HANVV");
                 });
 #pragma warning restore 612, 618
         }

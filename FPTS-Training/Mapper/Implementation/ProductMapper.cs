@@ -10,11 +10,14 @@ public class ProductMapper : IProductMapper
     public Products CreateToEntity(ProductCreateDTO create)
     {
         Products product = new Products();
+        //product.Id = create.Id;
         product.Code = create.Code;
         product.Name = create.Name;
         product.Status = create.Status;
         product.CreateDate = DateTime.UtcNow.AddHours(7);
         product.CreateBy = create.Name;
+        //product.UpdateDate = DateTime.UtcNow.AddHours(7);
+        //product.UpdateBy = "base";
         return product;
     }
 
@@ -32,12 +35,26 @@ public class ProductMapper : IProductMapper
 
     public ProductResponseDTO EntityToResponse(Products entity)
     {
-        ProductResponseDTO response = new ProductResponseDTO();
-        response.Id = entity.Id;
-        response.Code = entity.Code;
-        response.Name = entity.Name;
-        response.Status = entity.Status;
-        return response;
+        //ProductResponseDTO response = new ProductResponseDTO();
+        //if (entity == null)
+        //    throw new Exception("Không tìm thấy sản phẩm sau khi insert");
+        //response.Id = entity.Id;
+        //response.Code = entity.Code;
+        //response.Name = entity.Name;
+        //response.Status = entity.Status;
+
+        //return response;
+        //if(entity == null)
+        //{
+        //    throw new Exception("Null");
+        //}
+        return new ProductResponseDTO
+        {
+            Id = entity.Id,
+            Code = entity.Code,
+            Name = entity.Name,
+            Status = entity.Status
+        };
 
     }
 
@@ -49,7 +66,7 @@ public class ProductMapper : IProductMapper
     public Products UpdateToEntity(ProductUpdateDTO update)
     {
         Products product = new Products();
-        product.Id = update.Id;
+        //product.Id = update.Id;
         product.Code = update.Code;
         product.Name = update.Name;
         product.Status = update.Status;
