@@ -1,11 +1,17 @@
 using FPTS_Training.Data;
+using FPTS_Training.Extensions;
 using FPTS_Training.Mapper;
 using FPTS_Training.Mapper.Implementation;
 using FPTS_Training.Services;
 using FPTS_Training.Services.Implement;
+using FPTS_Training.Services.OrderQueue;
+using FPTS_Training.Services.ProductQueue;
 using Microsoft.EntityFrameworkCore;
+using Shared.ProducerSetting;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ServiceExtend();
 
 // Add services to the container.
 var connect = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -22,14 +28,7 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductMapper, ProductMapper>();
-builder.Services.AddScoped<IBuyerService, BuyerService>();
-builder.Services.AddScoped<IBuyerMapper, BuyerMapper>();
-builder.Services.AddScoped<IOrderService, OrderSerrvice>();
-builder.Services.AddScoped<IOrderMapper, OrderMapper>();
-builder.Services.AddScoped<IOrderItemService, OrderItemService>();
-builder.Services.AddScoped<IOrderItemMapper, OrderItemMapper>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

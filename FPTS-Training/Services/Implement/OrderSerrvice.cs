@@ -73,7 +73,8 @@ public class OrderSerrvice : IOrderService
             $"Status: {parameter[3].Value}, Code: {parameter[4].Value}, Name: {parameter[5].Value}, CreateDate: {parameter[6].Value}," +
             $"CreateBy: {parameter[7].Value}, Offset: {parameter[8].Value}, Partition: {parameter[9].Value}");
         var entity = await _context.Orders.AsNoTracking().FirstOrDefaultAsync(c => c.Id == newId);
-        
+        entity.Offsets = offsets;
+        entity.Partitions = partitions;
         return _mapper.EntityToResponse(entity);
     }
 

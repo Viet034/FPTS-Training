@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Shared.ProducerSetting;
 
-class ProducerSettings : IProducerSettings
+public class ProducerSettings : IProducerSettings
 {
     private readonly IProducer<string, string> _producer;
 
@@ -26,11 +26,25 @@ class ProducerSettings : IProducerSettings
         _producer = new ProducerBuilder<string, string>(configs).Build();
     }
 
-    public Task<DeliveryResult<string, string>> ProducerMessage<T>(string topic, string key, T message)
+    public async Task<DeliveryResult<string, string>> ProducerMessage<T>(string topic, string key, T message)
     {
-        throw new Exception("");
+        try
         {
+            var value = System.Text.Json.JsonSerializer.Serialize(message);
+            var result = await _producer.ProduceAsync(topic, new Message<string, string>
+            {
+                Key = key,
+                Value = value
+            });
+            Console.WriteLine($"Key: {key}");
+            Console.WriteLine($"Value: {value}");
 
-        };
+            return result;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error");
+        }
+        
     }
 }

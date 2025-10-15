@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using FPTS_Training.Models.DTO.RequestDTO.Order;
 using FPTS_Training.Models.DTO.RequestDTO.Product;
+using FPTS_Training.Services.OrderQueue;
 
 namespace FPTS_Training.Controllers;
 
@@ -14,21 +15,23 @@ namespace FPTS_Training.Controllers;
 public class OrdersController : ControllerBase
 {
     private readonly IOrderService _service;
+    private readonly IOrderMessage _message;
 
-    public OrdersController(IOrderService service)
+    public OrdersController(IOrderService service, IOrderMessage message)
     {
         _service = service;
+        _message = message;
     }
 
     [HttpPost("AddOrders")]
     [ProducesResponseType(typeof(IEnumerable<Orders>), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
 
-    public async Task<IActionResult> AddBuyers([FromBody] OrderCreateDTO create, long offsets, int partitions)
+    public async Task<IActionResult> AddBuyers([FromBody] OrderCreateDTO create)
     {
         try
         {
-            var response = await _service.CreateOrderAsync(create, offsets, partitions);
+            var response = await _message.CreateOrderProducerAsync(create);
             return Ok(response);
         }
         catch (Exception ex)
@@ -88,4 +91,6 @@ public class OrdersController : ControllerBase
             return BadRequest(ex.ToString());
         }
     }
+
+    
 }

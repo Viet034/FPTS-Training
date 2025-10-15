@@ -69,11 +69,12 @@ public class ProductService : IProductService
 
         // Lấy ID vừa insert từ OUT param (string)
         string newId = parameters[0].Value?.ToString();
-        Console.WriteLine($"Id: {newId}, status: {parameters[0].Value}, code: {parameters[1].Value}, name: {parameters[2].Value}, creD: {parameters[3].Value}, creBy: {parameters[4].Value}, offset: {parameters[5].Value}, par: {parameters[6].Value}");
+        Console.WriteLine($"Id: {newId}, status: {parameters[1].Value}, code: {parameters[2].Value}, name: {parameters[3].Value}, creD: {parameters[4].Value}, creBy: {parameters[5].Value}, offset: {parameters[6].Value}, par: {parameters[7].Value}");
 
         // Query lại record theo Id
         var entity = await _context.Products.AsNoTracking().FirstOrDefaultAsync(c => c.Id == newId);
-        
+        entity.Offsets = offsets;
+        entity.Partitions = partitions;
 
         return _mapper.EntityToResponse(entity);
 

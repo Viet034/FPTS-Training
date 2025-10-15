@@ -12,6 +12,6 @@ public interface IOrderItemService
     public  Task<bool> HardDeleteOrderItemAsync(OrderItemDeleteDTO delete);
 
     //public Task<ProductResponseDTO> ChangeGenderAsync(int id, Gender newStatus);
-    public Task<OrderItemResponseDTO> FindOrderItemByIdAsync(int id);
+    public Task<IEnumerable<OrderItemResponseDTO>> FindOrderItemByIdAsync(string id);
     public Task<string> CheckUniqueCodeAsync();
 }

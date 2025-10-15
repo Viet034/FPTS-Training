@@ -61,9 +61,14 @@ public class OrderItemService : IOrderItemService
         return _mapper.EntityToResponse(entity);
     }
 
-    public Task<OrderItemResponseDTO> FindOrderItemByIdAsync(int id)
+    public async Task<IEnumerable<OrderItemResponseDTO>> FindOrderItemByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        var co = _context.OrderItems.Where(c => c.OrderId.Equals(id)).ToList();
+        if(co == null)
+        {
+            throw new Exception("Data null");
+        }
+        return _mapper.ListEntityToResponse(co);
     }
 
     public async Task<IEnumerable<OrderItemResponseDTO>> GetAllOrderItemAsync()

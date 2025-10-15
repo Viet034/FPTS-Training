@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using FPTS_Training.Models.DTO.RequestDTO.OrderItem;
+using FPTS_Training.Services.OrderItemQueue;
 
 namespace FPTS_Training.Controllers;
 
@@ -13,21 +14,23 @@ namespace FPTS_Training.Controllers;
 public class OrderItemController : ControllerBase
 {
     private readonly IOrderItemService _service;
+    private readonly IOrderItemMessage _message;
 
-    public OrderItemController(IOrderItemService service)
+    public OrderItemController(IOrderItemService service, IOrderItemMessage message)
     {
         _service = service;
+        _message = message;
     }
 
     [HttpPost("AddOrderItem")]
     [ProducesResponseType(typeof(IEnumerable<OrderItems>), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
 
-    public async Task<IActionResult> AddBuyers([FromBody] OrderItemCreateDTO create, long offsets, int partitions)
+    public async Task<IActionResult> AddBuyers([FromBody] OrderItemCreateDTO create)
     {
         try
         {
-            var response = await _service.CreateOrderItemAsync(create, offsets, partitions);
+            var response = await _message.CreateOrderItemProducerAsync(create);
             return Ok(response);
         }
         catch (Exception ex)
@@ -88,4 +91,20 @@ public class OrderItemController : ControllerBase
         }
     }
 
+    [HttpGet("find-by-id")]
+    [ProducesResponseType(typeof(IEnumerable<OrderItems>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
+
+    public async Task<ActionResult<IEnumerable<OrderItems>>> FindOrderItemByIdAsync(string id)
+    {
+        try
+        {
+            var response = await _service.FindOrderItemByIdAsync(id);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
 }

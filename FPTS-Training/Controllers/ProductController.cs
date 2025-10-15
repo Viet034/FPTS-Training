@@ -6,6 +6,7 @@ using static Shared.Ultility.EntityStatus;
 using System.Net;
 using FPTS_Training.Models;
 using FPTS_Training.Models.DTO.RequestDTO.Product;
+using FPTS_Training.Services.ProductQueue;
 
 namespace FPTS_Training.Controllers;
 
@@ -14,21 +15,23 @@ namespace FPTS_Training.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly IProductService _service;
+    private readonly IProductMessage _message;
 
-    public ProductController(IProductService service)
+    public ProductController(IProductService service, IProductMessage message)
     {
         _service = service;
+        _message = message;
     }
 
     [HttpPost("AddProduct")]
     [ProducesResponseType(typeof(IEnumerable<Products>), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
    
-    public async Task<IActionResult> AddProduct([FromBody] ProductCreateDTO create,long offsets, int partitions)
+    public async Task<IActionResult> AddProduct([FromBody] ProductCreateDTO create)
     {
         try
         {
-            var response = await _service.CreateProductAsync(create,offsets,partitions);
+            var response = await _message.CreateProductProducerAsync(create);
             return Ok(response);
         }
         catch (Exception ex)
