@@ -1,12 +1,15 @@
-﻿using FPTS_Training.Data;
+﻿using Shared.Data;
 using FPTS_Training.Mapper;
-using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.Order;
-using FPTS_Training.Models.DTO.ResponseDTO;
+using Shared.Models;
+using Shared.Models.DTO.RequestDTO.Order;
+using Shared.Models.DTO.ResponseDTO;
 using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
+using Shared.Models.DTO.RequestDTO.Order;
+using Shared.Models.DTO.ResponseDTO;
 using Shared.Ultility;
 using System.Data;
+using static Shared.Ultility.EntityStatus;
 
 namespace FPTS_Training.Services.Implement;
 
@@ -14,6 +17,7 @@ public class OrderSerrvice : IOrderService
 {
     private readonly FPTSTrainingDBContext _context;
     private readonly IOrderMapper _mapper;
+    //private readonly IServiceScopeFactory serviceScopeFactory;
 
     public OrderSerrvice(FPTSTrainingDBContext context, IOrderMapper mapper)
     {
@@ -69,12 +73,19 @@ public class OrderSerrvice : IOrderService
         );
         
         string newId = parameter[0].Value?.ToString();
+        
         Console.WriteLine($"Id: {parameter[0].Value}, BuyerId: {parameter[1].Value}, Address: {parameter[2].Value}," +
             $"Status: {parameter[3].Value}, Code: {parameter[4].Value}, Name: {parameter[5].Value}, CreateDate: {parameter[6].Value}," +
             $"CreateBy: {parameter[7].Value}, Offset: {parameter[8].Value}, Partition: {parameter[9].Value}");
+
+       // using var scop = 
+
         var entity = await _context.Orders.AsNoTracking().FirstOrDefaultAsync(c => c.Id == newId);
-        entity.Offsets = offsets;
-        entity.Partitions = partitions;
+        //entity.Offsets = offsets;
+        //entity.Partitions = partitions;
+        entity.Status = OrderStatus.created;
+        _context.Orders.Update(entity);
+        _context.SaveChangesAsync();
         return _mapper.EntityToResponse(entity);
     }
 

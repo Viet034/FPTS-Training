@@ -1,4 +1,4 @@
-﻿using FPTS_Training.Models.DTO.RequestDTO.OrderItem;
+﻿using Shared.Models.DTO.RequestDTO.OrderItem;
 using Shared.ProducerSetting;
 
 namespace FPTS_Training.Services.OrderItemQueue;

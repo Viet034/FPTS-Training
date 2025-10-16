@@ -1,5 +1,5 @@
-﻿using FPTS_Training.Models.DTO.RequestDTO.Product;
-using Shared.ProducerSetting;
+﻿using Shared.Models.DTO.RequestDTO.Product;
+using Shared.ConsumerSetting;
 using System.Text.Json;
 
 namespace FPTS_Training.Services.ProductQueue;

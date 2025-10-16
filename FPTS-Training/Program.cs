@@ -1,4 +1,4 @@
-using FPTS_Training.Data;
+using Shared.Data;
 using FPTS_Training.Extensions;
 using FPTS_Training.Mapper;
 using FPTS_Training.Mapper.Implementation;

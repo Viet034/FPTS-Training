@@ -1,5 +1,6 @@
-﻿using FPTS_Training.Models.DTO.RequestDTO.OrderItem;
-using FPTS_Training.Models.DTO.ResponseDTO;
+﻿using Shared.Models.DTO.ResponseDTO;
+using Shared.Models.DTO.RequestDTO.OrderItem;
+using Shared.Models.DTO.ResponseDTO;
 
 namespace FPTS_Training.Services;
 

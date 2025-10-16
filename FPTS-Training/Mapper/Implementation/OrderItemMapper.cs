@@ -1,7 +1,8 @@
-﻿using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.OrderItem;
-using FPTS_Training.Models.DTO.ResponseDTO;
+﻿using Shared.Models;
+using Shared.Models.DTO.RequestDTO.OrderItem;
+using Shared.Models.DTO.ResponseDTO;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Shared.Models.DTO.ResponseDTO;
 
 namespace FPTS_Training.Mapper.Implementation;
 

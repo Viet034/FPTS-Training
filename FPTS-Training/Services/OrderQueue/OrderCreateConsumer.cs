@@ -1,4 +1,6 @@
-﻿using FPTS_Training.Models.DTO.RequestDTO.Order;
+﻿using Shared.Models.DTO.RequestDTO.Order;
+using Shared.ConsumerSetting;
+
 using Shared.ProducerSetting;
 
 namespace FPTS_Training.Services.OrderQueue;
@@ -8,7 +10,7 @@ public class OrderCreateConsumer : ConsumerGenericService<string, OrderCreateDTO
     private readonly IServiceScopeFactory _service;
 
     public OrderCreateConsumer(IConfiguration config,IServiceScopeFactory service) 
-        : base(config, "OrderFPTCreated", "OrderFPTCreatedId_V2")
+        : base(config, "BalanceFPTResult", "BalanceFPTResultGroup")
     {
         _service = service;
     }
@@ -17,6 +19,10 @@ public class OrderCreateConsumer : ConsumerGenericService<string, OrderCreateDTO
     {
         var scope = _service.CreateScope();
         var service = scope.ServiceProvider.GetRequiredService<IOrderService>();
-        await service.CreateOrderAsync(value, offset, partition);
+        var result = await service.CreateOrderAsync(value, offset, partition);
+
+        var order = _service.CreateScope();
+        var producer = order.ServiceProvider.GetRequiredService<IProducerSettings>();
+        await producer.ProducerMessage("NotificationFPT", key, result);
     }
 }

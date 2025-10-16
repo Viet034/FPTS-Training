@@ -6,6 +6,7 @@ using FPTS_Training.Services.ProductQueue;
 using FPTS_Training.Services;
 using Shared.ProducerSetting;
 using FPTS_Training.Services.OrderItemQueue;
+using FPTS_Training.Services.OrderQueue;
 
 namespace FPTS_Training.Extensions;
 

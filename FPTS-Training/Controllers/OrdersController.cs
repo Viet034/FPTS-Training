@@ -1,12 +1,13 @@
-﻿using FPTS_Training.Models.DTO.RequestDTO.Buyer;
-using FPTS_Training.Models;
+﻿using Shared.Models.DTO.RequestDTO.Buyer;
+using Shared.Models;
 using FPTS_Training.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using FPTS_Training.Models.DTO.RequestDTO.Order;
-using FPTS_Training.Models.DTO.RequestDTO.Product;
+using Shared.Models.DTO.RequestDTO.Order;
+using Shared.Models.DTO.RequestDTO.Product;
 using FPTS_Training.Services.OrderQueue;
+using Shared.Models.DTO.RequestDTO.Order;
 
 namespace FPTS_Training.Controllers;
 

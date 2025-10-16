@@ -1,6 +1,6 @@
-﻿using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.Buyer;
-using FPTS_Training.Models.DTO.ResponseDTO;
+﻿using Shared.Models;
+using Shared.Models.DTO.RequestDTO.Buyer;
+using Shared.Models.DTO.ResponseDTO;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FPTS_Training.Mapper.Implementation;

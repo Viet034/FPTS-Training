@@ -1,10 +1,11 @@
-﻿using FPTS_Training.Data;
+﻿using Shared.Data;
 using FPTS_Training.Mapper;
-using FPTS_Training.Models.DTO.RequestDTO.OrderItem;
-using FPTS_Training.Models.DTO.ResponseDTO;
+using Shared.Models.DTO.RequestDTO.OrderItem;
+using Shared.Models.DTO.ResponseDTO;
 using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using Shared.Models.DTO.ResponseDTO;
 
 namespace FPTS_Training.Services.Implement;
 

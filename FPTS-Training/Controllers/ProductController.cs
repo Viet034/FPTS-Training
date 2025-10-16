@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static Shared.Ultility.EntityStatus;
 using System.Net;
-using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.Product;
+using Shared.Models;
+using Shared.Models.DTO.RequestDTO.Product;
 using FPTS_Training.Services.ProductQueue;
 
 namespace FPTS_Training.Controllers;

@@ -1,8 +1,8 @@
-﻿using FPTS_Training.Data;
+﻿using Shared.Data;
 using FPTS_Training.Mapper;
-using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.Buyer;
-using FPTS_Training.Models.DTO.ResponseDTO;
+using Shared.Models;
+using Shared.Models.DTO.RequestDTO.Buyer;
+using Shared.Models.DTO.ResponseDTO;
 using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
 using Shared.Ultility;
@@ -68,7 +68,7 @@ public class BuyerService : IBuyerService
         
         string newId = parameter[0].Value?.ToString();
         Console.WriteLine($"Id: {newId}, payment: {parameter[1].Value}, code: {parameter[2].Value}, name: {parameter[3].Value},creDate: {parameter[4].Value} creBy: {parameter[5].Value}, offset: {parameter[6].Value}, par: {parameter[7].Value}");
-
+        
         var entity = await _context.Buyers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == newId);
         //var entity = await _context.Buyers
         //    .FromSqlRaw("SELECT * FROM BUYERS WHERE ID = {0}", newId)

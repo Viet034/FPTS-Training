@@ -1,6 +1,8 @@
-﻿using FPTS_Training.Models;
-using FPTS_Training.Models.DTO.RequestDTO.Order;
-using FPTS_Training.Models.DTO.ResponseDTO;
+﻿using Shared.Models;
+using Shared.Models.DTO.RequestDTO.Order;
+using Shared.Models.DTO.ResponseDTO;
+using Shared.Models.DTO.RequestDTO.Order;
+using Shared.Models.DTO.ResponseDTO;
 
 namespace FPTS_Training.Mapper;
 

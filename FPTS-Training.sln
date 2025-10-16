@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPTS-Training", "FPTS-Training\FPTS-Training.csproj", "{23944252-3B40-4E5D-8046-016A30C9EBEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "FPTS-Training\OrderService.csproj", "{23944252-3B40-4E5D-8046-016A30C9EBEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{F96FEB63-BCEE-4B43-A538-47DC15FC0ECD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalanceService", "BalanceService\BalanceService.csproj", "{974F841C-9CEE-4C99-876B-210FCBDA60A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{B493C748-5135-44D1-9D38-4CEB315854B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{974F841C-9CEE-4C99-876B-210FCBDA60A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974F841C-9CEE-4C99-876B-210FCBDA60A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974F841C-9CEE-4C99-876B-210FCBDA60A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B493C748-5135-44D1-9D38-4CEB315854B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B493C748-5135-44D1-9D38-4CEB315854B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B493C748-5135-44D1-9D38-4CEB315854B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B493C748-5135-44D1-9D38-4CEB315854B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
